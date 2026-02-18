@@ -19,10 +19,7 @@ local Translations = {
         jobAppSub = "Thank you for applying to %(job).",
         jobAppMsg = "Hello %{gender} %{lastname}<br /><br />%{job} has received your application.<br /><br />The boss is looking into your request and will reach out to you for an interview at their earliest convienance.<br /><br />Once again, thank you for your application.",
         mr = 'Sr',
-        mrs = 'Sra',
-        sender = 'Serviços Municipais',
-        subject = 'Solicitação de aulas de condução',
-        message = 'Olá %{gender} %{lastname}<br /><br />Acabamos de receber uma mensagem de que alguém quer fazer aulas de condução<br />Se quiser fazer de instructor por favor contacte-nos:<br />Nome: <strong>%{firstname} %{lastname}</strong><br />Telemóvel: <strong>%{phone}</strong><br/><br/>Melhores Cumprimentos,<br />Serviços Municipais'
+        mrs = 'Sra'
     }
 }
 if GetConvar('qb_locale', 'en') == 'pt' then
