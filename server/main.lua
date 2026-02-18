@@ -92,28 +92,6 @@ RegisterNetEvent('qb-cityhall:server:requestId', function(item, hall)
     TriggerClientEvent('qb-inventory:client:ItemBox', src, QBCore.Shared.Items[item], 'add')
 end)
 
-RegisterNetEvent('qb-cityhall:server:sendDriverTest', function(instructors)
-    local src = source
-    local Player = QBCore.Functions.GetPlayer(src)
-    if not Player then return end
-    for i = 1, #instructors do
-        local citizenid = instructors[i]
-        local SchoolPlayer = QBCore.Functions.GetPlayerByCitizenId(citizenid)
-        if SchoolPlayer then
-            TriggerClientEvent('qb-cityhall:client:sendDriverEmail', SchoolPlayer.PlayerData.source, Player.PlayerData.charinfo)
-        else
-            local mailData = {
-                sender = 'Township',
-                subject = 'Driving lessons request',
-                message = 'Hello,<br><br>We have just received a message that someone wants to take driving lessons.<br>If you are willing to teach, please contact them:<br>Name: <strong>' .. Player.PlayerData.charinfo.firstname .. ' ' .. Player.PlayerData.charinfo.lastname .. '<br />Phone Number: <strong>' .. Player.PlayerData.charinfo.phone .. '</strong><br><br>Kind regards,<br>Township Los Santos',
-                button = {}
-            }
-            exports['qb-phone']:sendNewMailToOffline(citizenid, mailData)
-        end
-    end
-    TriggerClientEvent('QBCore:Notify', src, 'An email has been sent to driving schools, and you will be contacted automatically', 'success', 5000)
-end)
-
 RegisterNetEvent('qb-cityhall:server:ApplyJob', function(job, cityhallCoords)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
@@ -139,28 +117,3 @@ RegisterNetEvent('QBCore:Client:UpdateObject', function()
     QBCore = exports['qb-core']:GetCoreObject()
 end)
 
--- Commands
-
-QBCore.Commands.Add('drivinglicense', 'Give a drivers license to someone', { { 'id', 'ID of a person' } }, true, function(source, args)
-    local Player = QBCore.Functions.GetPlayer(source)
-    local SearchedPlayer = QBCore.Functions.GetPlayer(tonumber(args[1]))
-    if SearchedPlayer then
-        if not SearchedPlayer.PlayerData.metadata['licences']['driver'] then
-            for i = 1, #Config.DrivingSchools do
-                for id = 1, #Config.DrivingSchools[i].instructors do
-                    if Config.DrivingSchools[i].instructors[id] == Player.PlayerData.citizenid then
-                        SearchedPlayer.PlayerData.metadata['licences']['driver'] = true
-                        SearchedPlayer.Functions.SetMetaData('licences', SearchedPlayer.PlayerData.metadata['licences'])
-                        TriggerClientEvent('QBCore:Notify', SearchedPlayer.PlayerData.source, 'You have passed! Pick up your drivers license at the town hall', 'success', 5000)
-                        TriggerClientEvent('QBCore:Notify', source, ('Player with ID %s has been granted access to a driving license'):format(SearchedPlayer.PlayerData.source), 'success', 5000)
-                        break
-                    end
-                end
-            end
-        else
-            TriggerClientEvent('QBCore:Notify', source, "Can't give permission for a drivers license, this person already has permission", 'error')
-        end
-    else
-        TriggerClientEvent('QBCore:Notify', source, 'Player Not Online', 'error')
-    end
-end)
