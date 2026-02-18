@@ -30,8 +30,7 @@ Config.Cityhalls = {
             },
             ['driver_license'] = {
                 label = 'Driver License',
-                cost = 1000,
-                metadata = 'driver'
+                cost = 1000
             },
             ['weaponlicense'] = {
                 label = 'Weapon License',
