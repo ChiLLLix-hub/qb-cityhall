@@ -116,5 +116,3 @@ RegisterNetEvent('qb-cityhall:server:getIDs', giveStarterItems)
 RegisterNetEvent('QBCore:Client:UpdateObject', function()
     QBCore = exports['qb-core']:GetCoreObject()
 end)
-
-
