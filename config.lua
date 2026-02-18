@@ -42,8 +42,6 @@ Config.Cityhalls = {
     },
 }
 
-
-
 Config.Peds = {
     -- Cityhall Ped
     {
@@ -57,5 +55,4 @@ Config.Peds = {
             debugPoly = false
         }
     },
-
 }
