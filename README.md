@@ -9,12 +9,10 @@ City Services for QB-Core Framework
 
 ## Features
 - Ability to request birth certificate when lost
-- Ability to request driver license when granted by a driving instructor
+- Ability to request driver license
 - Ability to request weapon license when granted it by the police
 - Ability to apply to government jobs
 - Ability to add multiple cityhall locations
-- Ability to add nultiple driving school locations
-- Ability to take driving lessons
 - qb-target integration, this is optional
 - PolyZone and qb-core DrawText integration, this is optional
 
@@ -37,9 +35,6 @@ ensure qb-cityhall
 ![Apply For a Job](https://i.imgur.com/26Kd0FU.png)
 ![Cityhall DrawText Interaction](https://i.imgur.com/Uxh2GZC.png)
 ![Cityhall QB-Target Interaction](https://i.imgur.com/K54cMLt.png)
-![Driving School Sending And Receiving Mail](https://i.imgur.com/iJof4jI.png)
-![Driving School DrawText Interaction](https://i.imgur.com/32BPp8f.png)
-![Driving School QB-Target Interaction](https://i.imgur.com/P7jWBsV.png)
 
 # License
 
