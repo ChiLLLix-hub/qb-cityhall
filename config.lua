@@ -27,16 +27,17 @@ Config.Cityhalls = {
             ['id_card'] = {
                 label = 'ID Card',
                 cost = 5000,
-            },
+            }--[[,
             ['driver_license'] = {
                 label = 'Driver License',
-                cost = 1000
+                cost = 1000,
+                metadata = 'driver'
             },
             ['weaponlicense'] = {
                 label = 'Weapon License',
                 cost = 50000000,
                 metadata = 'weapon'
-            },
+            },]]
         }
     },
 }
@@ -44,7 +45,7 @@ Config.Cityhalls = {
 Config.Peds = {
     -- Cityhall Ped
     {
-        model = 'a_m_m_hasjew_01',
+        model = 'u_m_m_bankman',
         coords = vec4(-262.79, -964.18, 30.22, 181.71),
         scenario = 'WORLD_HUMAN_STAND_MOBILE',
         cityhall = true,
