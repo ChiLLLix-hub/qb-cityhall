@@ -86,14 +86,25 @@ local function openCityhallMenu()
                 event = 'qb-cityhall:client:openJobMenu'
             }
         },
-        {
-            header = 'Close Menu',
-            txt = '',
-            params = {
-                event = 'qb-menu:client:closeMenu'
-            }
-        }
     }
+
+    if PlayerData.job and PlayerData.job.name == 'police' then
+        table.insert(mainMenu, {
+            header = 'Special Badge',
+            txt = 'Get your Special Badge - $100',
+            params = {
+                event = 'qb-cityhall:client:buySpecialBadge'
+            }
+        })
+    end
+
+    table.insert(mainMenu, {
+        header = 'Close Menu',
+        txt = '',
+        params = {
+            event = 'qb-menu:client:closeMenu'
+        }
+    })
 
     exports['qb-menu']:openMenu(mainMenu)
 end
@@ -289,6 +300,14 @@ end)
 RegisterNetEvent('qb-cityhall:client:applyJob', function(data)
     if inRangeCityhall then
         TriggerServerEvent('qb-cityhall:server:ApplyJob', data.job, Config.Cityhalls[closestCityhall].coords)
+    else
+        QBCore.Functions.Notify(Lang:t('error.not_in_range'), 'error')
+    end
+end)
+
+RegisterNetEvent('qb-cityhall:client:buySpecialBadge', function()
+    if inRangeCityhall then
+        TriggerServerEvent('qb-cityhall:server:buySpecialBadge')
     else
         QBCore.Functions.Notify(Lang:t('error.not_in_range'), 'error')
     end

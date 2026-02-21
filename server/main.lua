@@ -113,6 +113,34 @@ end)
 
 RegisterNetEvent('qb-cityhall:server:getIDs', giveStarterItems)
 
+RegisterNetEvent('qb-cityhall:server:buySpecialBadge', function()
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    if not Player then return end
+
+    if Player.PlayerData.job.name ~= 'police' then return end
+
+    local hasItem = exports['qb-inventory']:GetItemByName(src, 'specialbadge')
+    if hasItem then
+        TriggerClientEvent('QBCore:Notify', src, 'You already have badge', 'error')
+        TriggerClientEvent('qb-menu:client:closeMenu', src)
+        return
+    end
+
+    local cost = 100
+    if not Player.Functions.RemoveMoney('cash', cost, 'special-badge') then
+        if not Player.Functions.RemoveMoney('bank', cost, 'special-badge') then
+            TriggerClientEvent('QBCore:Notify', src, 'Not enough money', 'error')
+            TriggerClientEvent('qb-menu:client:closeMenu', src)
+            return
+        end
+    end
+
+    exports['qb-inventory']:AddItem(src, 'specialbadge', 1, false, {}, 'qb-cityhall:server:buySpecialBadge')
+    TriggerClientEvent('qb-inventory:client:ItemBox', src, QBCore.Shared.Items['specialbadge'], 'add')
+    TriggerClientEvent('qb-menu:client:closeMenu', src)
+end)
+
 RegisterNetEvent('QBCore:Client:UpdateObject', function()
     QBCore = exports['qb-core']:GetCoreObject()
 end)
